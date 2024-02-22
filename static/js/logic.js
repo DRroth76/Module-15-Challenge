@@ -30,29 +30,29 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson
             div.style.padding = '10px';
             div.style.border = '1px solid #ccc';
             div.style.borderRadius = '5px';
-            div.style.display = 'flex'; // Added to make the legend a flex container
-            div.style.flexDirection = 'column'; // Ensure a vertical layout
+            div.style.display = 'flex'; 
+            div.style.flexDirection = 'column'; 
         
-            div.innerHTML += '<h4>Depth Legend </h4>'; // Adjust margin for spacing
+            div.innerHTML += '<h4>Depth Legend </h4>'; 
         
             depthRanges.forEach(range => {
                 const color = getColorForDepth(range.min);
         
-                // Create a container for each legend entry
+                
                 const legendEntryContainer = L.DomUtil.create('div', 'legend-entry-container');
                 legendEntryContainer.style.display = 'flex';
-                legendEntryContainer.style.alignItems = 'center'; // Align items vertically in the middle
+                legendEntryContainer.style.alignItems = 'center'; 
                 div.appendChild(legendEntryContainer);
         
-                // Append color swatches to the legend entry container
+                
                 const colorBox = L.DomUtil.create('div', 'color-box');
                 colorBox.style.backgroundColor = color;
                 colorBox.style.height = '20px';
                 colorBox.style.width = '20px';
-                colorBox.style.marginRight = '5px'; // Added margin to separate color boxes
+                colorBox.style.marginRight = '5px';
                 legendEntryContainer.appendChild(colorBox);
         
-                // Append legend entries with labels
+                
                 const legendEntry = L.DomUtil.create('div', 'legend-entry');
                 legendEntry.innerHTML = `<span>${range.label}</span>`;
                 legendEntryContainer.appendChild(legendEntry);
@@ -62,7 +62,6 @@ fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson
         };
 
         function getColorForDepth(depth) {
-            // Modify this function to match your color scale
             return `rgb(255, ${Math.floor(255 * (1 - (depth / 100)))}, 0)`;
         }
 
